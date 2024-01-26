@@ -11,7 +11,7 @@ for coin in coin_types:
 print(change)
 
 # 예제 3-2 큰수의 법칙 (수정 필요)
- N,M,K = map(int, input().split())
+N,M,K = map(int, input().split())
 result = 0
 arr = []
 
