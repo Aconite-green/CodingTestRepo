@@ -1,28 +1,70 @@
-# 배낭
-def fractional_knapsack(W, N, items):
-    # 무게당 가치를 기준으로 내림차순 정렬
+
+
+########################################### 바이러스
+
+def calculate_virus_count(K, P, N):
+    MOD = 1000000007
+    
+    final_count = K
+    exponent = N * 10
+
+    while exponent > 0:
+        if exponent % 2 == 1:
+            final_count = (final_count * P) % MOD
+        P = (P * P) % MOD
+        exponent //= 2
+
+    return final_count
+
+
+K, P, N = map(int, input().split())
+
+final_virus_count = calculate_virus_count(K, P, N)
+print(final_virus_count)
+
+########################################### 금고털이이
+
+def fractional_knapsack(W, items):
+    
     items.sort(key=lambda x: x[1]/x[0], reverse=True)
 
-    total_value = 0  # 배낭에 담을 수 있는 총 가치
+    total_value = 0
     for weight, value in items:
         if W >= weight:
-            # 배낭에 아이템을 전부 담을 수 있으면 전부 담고, W 감소
+           
             total_value += value
             W -= weight
         else:
-            # 배낭에 부분적으로만 담을 수 있으면 해당 부분만큼의 가치만 추가
-            total_value += (value/weight) * W
-            break  # 배낭이 꽉 찼으므로 반복문 종료
+            
+            total_value += (value / weight) * W
+            break
 
     return total_value
 
-# 입력 받기
-W, N = map(int, input().split())  # 배낭의 무게와 귀금속 종류의 수
-items = []
-for _ in range(N):
-    weight, value_per_weight = map(int, input().split())
-    items.append((weight, value_per_weight * weight))  # (무게, 총 가치)
 
-# 가장 값비싼 가격 계산
-max_value = fractional_knapsack(W, N, items)
+W, N = map(int, input().split())
+items = [tuple(map(int, input().split())) for _ in range(N)]
+
+
+max_value = fractional_knapsack(W, items)
 print(max_value)
+
+########################################### 8단 변속
+
+def check_shift_order(shifts):
+    if shifts == list(range(1, 9)):
+        return "ascending"
+    elif shifts == list(range(8, 0, -1)):
+        return "descending"
+    else:
+        return "mixed"
+
+
+shifts = list(map(int, input().split()))
+
+
+shift_order = check_shift_order(shifts)
+print(shift_order)
+
+
+########################################### 장애물 인식 프로그램
