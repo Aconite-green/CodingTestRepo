@@ -1,6 +1,9 @@
-from datetime import datetime, timedelta
+N = int(input())
 
-seoul_time = datetime.now()
+while N > 1:
+    for i in range(2, N+1):
+        if N % i == 0:
+            print(i)
+            N //=i
+            break
 
-seoul_data_str = seoul_time.strftime("%Y-%m-%d")
-print(seoul_data_str)
