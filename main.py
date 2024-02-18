@@ -1,9 +1,11 @@
-N = int(input())
+import sys
 
-while N > 1:
-    for i in range(2, N+1):
-        if N % i == 0:
-            print(i)
-            N //=i
-            break
 
+r, M = 31, 1234567891
+
+L = int(input())
+string = input().strip()
+
+
+
+    
