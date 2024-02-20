@@ -98,3 +98,30 @@ string = "abc"
 # 해시 값 계산 및 출력
 hash_value = calculate_hash(string, r, M)
 print(f"Hash value of '{string}' is: {hash_value}")
+
+
+
+
+#################################################################
+
+
+def find_closest_sum(cards, N, M):
+    closest_sum = 0
+    # 모든 카드 3장의 조합을 탐색합니다.
+    for i in range(N):
+        for j in range(i + 1, N):
+            for k in range(j + 1, N):
+                current_sum = cards[i] + cards[j] + cards[k]
+                # 현재 합이 M을 넘지 않으면서, 이전에 찾은 합보다 크고 M에 더 가까우면 업데이트합니다.
+                if closest_sum < current_sum <= M:
+                    closest_sum = current_sum
+    return closest_sum
+
+# 사용자 입력을 받습니다.
+N, M = map(int, input("카드의 개수와 목표값을 입력하세요 (예: 5 21): ").split())
+cards = list(map(int, input(f"{N}장의 카드에 쓰인 숫자를 입력하세요: ").split()))
+
+# 결과를 계산하고 출력합니다.
+closest_sum = find_closest_sum(cards, N, M)
+print(f"M을 넘지 않으면서 M에 최대한 가까운 카드 3장의 합은: {closest_sum}")
+
