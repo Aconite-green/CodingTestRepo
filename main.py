@@ -1,31 +1,31 @@
+from collections import deque
 
+T = int(input())
 
-def fast_power(base, power, mod):
-    result = 1
-    while power > 0:
-        if power %2 == 1:
-            result = (result*base) % mod
-        base = (base*base)%mod
-        power //=2
+def printer_queue(N, M):
+    N_array = list(map(int, input().split()))
+    printer = deque()
     
-    return result
-
-def get_hash_result(r,M,string):
-    result = 0
+    for index, priority in enumerate(N_array):
+        printer.append((index, priority))
     
-    for i,char in enumerate(string):
-        char_value = ord(char) - ord('a') + 1
+    print_order = 0
+    while printer:
 
-        hash_value_r = fast_power(r, i, M)
+        max_priority = max(printer, key=lambda x:x[1])[1]
 
-        result = (result + char_value*hash_value_r)%M
-    
-    return result
+        current = printer.popleft()
 
+        if max_priority > current[1]:
+            printer.append(current)
+        else:
+            print_order += 1
+            if current[0] == M:
+                return print_order
 
-L = int(input())
-string = input()
-r= 31
-M = 1234567891
+for _ in range(T):
+    N, M = map(int, input().split())
 
-print(get_hash_result(r, M, string))
+    print(printer_queue(N, M))
+
+        
