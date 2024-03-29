@@ -1,31 +1,14 @@
-from collections import deque
+N, M = map(int, input().split())
 
-T = int(input())
+N_array = list(map(int, input().split()))
 
-def printer_queue(N, M):
-    N_array = list(map(int, input().split()))
-    printer = deque()
-    
-    for index, priority in enumerate(N_array):
-        printer.append((index, priority))
-    
-    print_order = 0
-    while printer:
+result = [0]
 
-        max_priority = max(printer, key=lambda x:x[1])[1]
+for i in range(N):
+    result.append()
 
-        current = printer.popleft()
+print(result)
 
-        if max_priority > current[1]:
-            printer.append(current)
-        else:
-            print_order += 1
-            if current[0] == M:
-                return print_order
-
-for _ in range(T):
-    N, M = map(int, input().split())
-
-    print(printer_queue(N, M))
-
-        
+for _ in range(M):
+    i,j = map(int, input().split())
+    print(result[j] - result[i])
